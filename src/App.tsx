@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import "./App.css";
 
 const syllables = [
@@ -288,10 +289,16 @@ const syllables = [
   },
 ];
 
+const rotation = {
+  initial: "[transform:rotateY(0)]",
+  middle: "[transform:rotateY(90deg)]",
+};
+
 const App = () => {
   const [theme, setTheme] = useState<"light" | "dark">("dark");
   const [currentPosition, setCurrentPosition] = useState(0);
-  const [isRevealed, setIsRevealed] = useState(false);
+  const [isRomaji, setIsRomaji] = useState(false);
+  const [rotate, setRotate] = useState(false);
 
   const currentSyllable = syllables[currentPosition];
 
@@ -312,12 +319,22 @@ const App = () => {
   return (
     <div className="flex min-h-svh items-center justify-center">
       <button
+        className={
+          "flex h-96 max-w-72 flex-grow items-center justify-center rounded-xl text-9xl font-bold uppercase transition-transform duration-[3000ms] [backface-visibility:hidden] [perspective:40em] [transform-style:preserve-3d] dark:text-slate-300 " +
+          (isRomaji ? "dark:bg-cyan-600 " : "dark:bg-slate-800 ") +
+          (rotate ? "[transform:rotateY(90deg)]" : "[transform:rotateY(0)]")
+        }
         onClick={() => {
-          setIsRevealed(!isRevealed);
+          setRotate(true);
         }}
-        className="flex h-96 max-w-72 flex-grow items-center justify-center rounded-xl text-9xl font-bold uppercase dark:bg-slate-800 dark:text-slate-300"
+        onTransitionEnd={() => {
+          if (rotate) {
+            setIsRomaji(!isRomaji);
+            setRotate(false);
+          }
+        }}
       >
-        {isRevealed ? currentSyllable.romaji : currentSyllable.kana}
+        {isRomaji ? currentSyllable.romaji : currentSyllable.kana}
       </button>
     </div>
   );
