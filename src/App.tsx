@@ -291,6 +291,7 @@ const syllables = [
 const App = () => {
   const [theme, setTheme] = useState<"light" | "dark">("dark");
   const [currentPosition, setCurrentPosition] = useState(0);
+  const [isRevealed, setIsRevealed] = useState(false);
 
   const currentSyllable = syllables[currentPosition];
 
@@ -310,9 +311,14 @@ const App = () => {
 
   return (
     <div className="flex min-h-svh items-center justify-center">
-      <div className="flex h-96 max-w-72 flex-grow items-center justify-center rounded-xl text-9xl font-bold dark:bg-slate-800 dark:text-slate-300">
-        <div>{currentSyllable.kana}</div>
-      </div>
+      <button
+        onClick={() => {
+          setIsRevealed(!isRevealed);
+        }}
+        className="flex h-96 max-w-72 flex-grow items-center justify-center rounded-xl text-9xl font-bold uppercase dark:bg-slate-800 dark:text-slate-300"
+      >
+        {isRevealed ? currentSyllable.romaji : currentSyllable.kana}
+      </button>
     </div>
   );
 };
