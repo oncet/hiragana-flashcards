@@ -320,9 +320,13 @@ const App = () => {
     <div className="flex min-h-svh items-center justify-center">
       <button
         className={
-          "flex h-96 max-w-72 flex-grow items-center justify-center rounded-xl text-9xl font-bold uppercase transition-transform duration-[3000ms] [backface-visibility:hidden] [perspective:40em] [transform-style:preserve-3d] dark:text-slate-300 " +
-          (isRomaji ? "dark:bg-cyan-600 " : "dark:bg-slate-800 ") +
-          (rotate ? "[transform:rotateY(90deg)]" : "[transform:rotateY(0)]")
+          "flex h-96 max-w-72 flex-grow items-center justify-center rounded-xl text-9xl font-bold uppercase transition-transform duration-[150ms] [backface-visibility:hidden] [perspective:40em] [transform-style:preserve-3d] dark:text-slate-300 " +
+          (isRomaji
+            ? "dark:bg-green-400 dark:text-slate-900 "
+            : "dark:bg-slate-800 ") +
+          (rotate
+            ? "ease-in [transform:rotateY(90deg)]"
+            : "ease-out [transform:rotateY(0)]")
         }
         onClick={() => {
           setRotate(true);
