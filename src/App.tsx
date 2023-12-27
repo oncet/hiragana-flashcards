@@ -299,6 +299,8 @@ const App = () => {
   const [currentPosition, setCurrentPosition] = useState(0);
   const [isRomaji, setIsRomaji] = useState(false);
   const [rotate, setRotate] = useState(false);
+  const [rejected, setRejected] = useState(false);
+  const [approved, setApproved] = useState(false);
 
   const currentSyllable = syllables[currentPosition];
 
@@ -317,10 +319,13 @@ const App = () => {
   }, []);
 
   return (
-    <div className="flex min-h-svh items-center justify-center">
+    <div className="flex min-h-svh items-center justify-center gap-6">
+      <button className="hidden h-80 max-w-56 flex-grow items-center justify-center rounded-xl text-9xl md:flex dark:bg-red-900 dark:text-slate-300">
+        X
+      </button>
       <button
         className={
-          "flex h-96 max-w-72 flex-grow items-center justify-center rounded-xl text-9xl font-bold uppercase transition-transform duration-[150ms] [backface-visibility:hidden] [perspective:40em] [transform-style:preserve-3d] dark:text-slate-300 " +
+          "flex h-80 max-w-56 flex-grow items-center justify-center rounded-xl text-9xl font-bold uppercase transition-transform duration-[150ms] dark:text-slate-300 " +
           (isRomaji
             ? "dark:bg-green-400 dark:text-slate-900 "
             : "dark:bg-slate-800 ") +
@@ -339,6 +344,9 @@ const App = () => {
         }}
       >
         {isRomaji ? currentSyllable.romaji : currentSyllable.kana}
+      </button>
+      <button className="hidden h-80 max-w-56 flex-grow items-center justify-center rounded-xl text-9xl md:flex dark:bg-green-900 dark:text-slate-300">
+        〇
       </button>
     </div>
   );
