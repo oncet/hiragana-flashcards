@@ -6,7 +6,7 @@ type CardProps = {
 } & React.HTMLAttributes<HTMLButtonElement>;
 
 export const Card = ({ children, className, ...props }: CardProps) => (
-  <div
+  <button
     className={twMerge(
       "flex h-80 w-56 items-center justify-center rounded-xl text-9xl dark:bg-slate-800 dark:text-slate-300",
       className,
@@ -14,5 +14,5 @@ export const Card = ({ children, className, ...props }: CardProps) => (
     {...props}
   >
     {children}
-  </div>
+  </button>
 );
