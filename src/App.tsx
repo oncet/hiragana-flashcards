@@ -14,8 +14,8 @@ const App = () => {
   const [currentPosition, setCurrentPosition] = useState(0);
   const [isRomaji, setIsRomaji] = useState(false);
   const [isRotated, setIsRotated] = useState(false);
-  const [rejectedCards, setRejectedCards] = useState(false);
-  const [approvedCards, setApprovedCards] = useState(false);
+  const [rejectedSyllables, setRejectedSyllables] = useState(false);
+  const [approvedSyllables, setApprovedSyllables] = useState(false);
 
   const currentSyllable = syllables[currentPosition];
 
