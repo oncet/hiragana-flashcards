@@ -1,293 +1,8 @@
 import { useEffect, useState } from "react";
 
 import "./App.css";
-
-const syllables = [
-  {
-    kana: "あ",
-    romaji: "a",
-  },
-  {
-    kana: "い",
-    romaji: "i",
-  },
-  {
-    kana: "う",
-    romaji: "u",
-  },
-  {
-    kana: "え",
-    romaji: "e",
-  },
-  {
-    kana: "お",
-    romaji: "o",
-  },
-  {
-    kana: "か",
-    romaji: "ka",
-  },
-  {
-    kana: "き",
-    romaji: "ki",
-  },
-  {
-    kana: "く",
-    romaji: "ku",
-  },
-  {
-    kana: "け",
-    romaji: "ke",
-  },
-  {
-    kana: "こ",
-    romaji: "ko",
-  },
-  {
-    kana: "さ",
-    romaji: "sa",
-  },
-  {
-    kana: "し",
-    romaji: "shi",
-  },
-  {
-    kana: "す",
-    romaji: "su",
-  },
-  {
-    kana: "せ",
-    romaji: "se",
-  },
-  {
-    kana: "そ",
-    romaji: "so",
-  },
-  {
-    kana: "た",
-    romaji: "ta",
-  },
-  {
-    kana: "ち",
-    romaji: "chi",
-  },
-  {
-    kana: "つ",
-    romaji: "tsu",
-  },
-  {
-    kana: "て",
-    romaji: "te",
-  },
-  {
-    kana: "と",
-    romaji: "to",
-  },
-  {
-    kana: "な",
-    romaji: "na",
-  },
-  {
-    kana: "に",
-    romaji: "ni",
-  },
-  {
-    kana: "ぬ",
-    romaji: "nu",
-  },
-  {
-    kana: "ね",
-    romaji: "ne",
-  },
-  {
-    kana: "の",
-    romaji: "no",
-  },
-  {
-    kana: "は",
-    romaji: "ha",
-  },
-  {
-    kana: "ひ",
-    romaji: "hi",
-  },
-  {
-    kana: "ふ",
-    romaji: "fu",
-  },
-  {
-    kana: "へ",
-    romaji: "he",
-  },
-  {
-    kana: "ほ",
-    romaji: "ho",
-  },
-  {
-    kana: "ま",
-    romaji: "ma",
-  },
-  {
-    kana: "み",
-    romaji: "mi",
-  },
-  {
-    kana: "む",
-    romaji: "mu",
-  },
-  {
-    kana: "め",
-    romaji: "me",
-  },
-  {
-    kana: "も",
-    romaji: "mo",
-  },
-  {
-    kana: "や",
-    romaji: "ya",
-  },
-  {
-    kana: "ゆ",
-    romaji: "yu",
-  },
-  {
-    kana: "よ",
-    romaji: "yo",
-  },
-  {
-    kana: "ら",
-    romaji: "ra",
-  },
-  {
-    kana: "り",
-    romaji: "ri",
-  },
-  {
-    kana: "る",
-    romaji: "ru",
-  },
-  {
-    kana: "れ",
-    romaji: "re",
-  },
-  {
-    kana: "ろ",
-    romaji: "ro",
-  },
-  {
-    kana: "わ",
-    romaji: "wa",
-  },
-  {
-    kana: "を",
-    romaji: "wo",
-  },
-  {
-    kana: "ん",
-    romaji: "n",
-  },
-  {
-    kana: "が",
-    romaji: "ga",
-  },
-  {
-    kana: "ぎ",
-    romaji: "gi",
-  },
-  {
-    kana: "ぐ",
-    romaji: "gu",
-  },
-  {
-    kana: "げ",
-    romaji: "ge",
-  },
-  {
-    kana: "ご",
-    romaji: "go",
-  },
-  {
-    kana: "ざ",
-    romaji: "za",
-  },
-  {
-    kana: "じ",
-    romaji: "ji",
-  },
-  {
-    kana: "ず",
-    romaji: "zu",
-  },
-  {
-    kana: "ぜ",
-    romaji: "ze",
-  },
-  {
-    kana: "ぞ",
-    romaji: "zo",
-  },
-  {
-    kana: "だ",
-    romaji: "da",
-  },
-  {
-    kana: "ぢ",
-    romaji: "ji",
-  },
-  {
-    kana: "づ",
-    romaji: "zu",
-  },
-  {
-    kana: "で",
-    romaji: "de",
-  },
-  {
-    kana: "ど",
-    romaji: "do",
-  },
-  {
-    kana: "ば",
-    romaji: "ba",
-  },
-  {
-    kana: "び",
-    romaji: "bi",
-  },
-  {
-    kana: "ぶ",
-    romaji: "bu",
-  },
-  {
-    kana: "べ",
-    romaji: "be",
-  },
-  {
-    kana: "ぼ",
-    romaji: "bo",
-  },
-  {
-    kana: "ぱ",
-    romaji: "pa",
-  },
-  {
-    kana: "ぴ",
-    romaji: "pi",
-  },
-  {
-    kana: "ぷ",
-    romaji: "pu",
-  },
-  {
-    kana: "ぺ",
-    romaji: "pe",
-  },
-  {
-    kana: "ぽ",
-    romaji: "po",
-  },
-];
+import { Card } from "./components/Card";
+import syllables from "./syllables";
 
 const rotation = {
   initial: "[transform:rotateY(0)]",
@@ -298,9 +13,9 @@ const App = () => {
   const [theme, setTheme] = useState<"light" | "dark">("dark");
   const [currentPosition, setCurrentPosition] = useState(0);
   const [isRomaji, setIsRomaji] = useState(false);
-  const [rotate, setRotate] = useState(false);
-  const [rejected, setRejected] = useState(false);
-  const [approved, setApproved] = useState(false);
+  const [isRotated, setIsRotated] = useState(false);
+  const [rejectedCards, setRejectedCards] = useState(false);
+  const [approvedCards, setApprovedCards] = useState(false);
 
   const currentSyllable = syllables[currentPosition];
 
@@ -320,34 +35,30 @@ const App = () => {
 
   return (
     <div className="flex min-h-svh items-center justify-center gap-6">
-      <button className="hidden h-80 max-w-56 flex-grow items-center justify-center rounded-xl text-9xl md:flex dark:bg-red-900 dark:text-slate-300">
-        X
-      </button>
-      <button
+      <Card className="dark:bg-red-900">X</Card>
+      <Card
         className={
-          "flex h-80 max-w-56 flex-grow items-center justify-center rounded-xl text-9xl font-bold uppercase transition-transform duration-[150ms] dark:text-slate-300 " +
+          "font-bold uppercase transition-transform duration-[150ms] " +
           (isRomaji
             ? "dark:bg-green-400 dark:text-slate-900 "
             : "dark:bg-slate-800 ") +
-          (rotate
+          (isRotated
             ? "ease-in [transform:rotateY(90deg)]"
             : "ease-out [transform:rotateY(0)]")
         }
         onClick={() => {
-          setRotate(true);
+          setIsRotated(true);
         }}
         onTransitionEnd={() => {
-          if (rotate) {
+          if (isRotated) {
             setIsRomaji(!isRomaji);
-            setRotate(false);
+            setIsRotated(false);
           }
         }}
       >
         {isRomaji ? currentSyllable.romaji : currentSyllable.kana}
-      </button>
-      <button className="hidden h-80 max-w-56 flex-grow items-center justify-center rounded-xl text-9xl md:flex dark:bg-green-900 dark:text-slate-300">
-        〇
-      </button>
+      </Card>
+      <Card className="dark:bg-green-900">〇</Card>
     </div>
   );
 };
