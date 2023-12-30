@@ -9,8 +9,8 @@ const App = () => {
   const [currentPosition, setCurrentPosition] = useState(0);
   const [isRomaji, setIsRomaji] = useState(false);
   const [isRotated, setIsRotated] = useState(false);
-  const [rejectedSyllables, setRejectedSyllables] = useState(false);
-  const [approvedSyllables, setApprovedSyllables] = useState(false);
+  const [rejectedSyllables, setRejectedSyllables] = useState<number[]>([]);
+  const [approvedSyllables, setApprovedSyllables] = useState<number[]>([]);
 
   const currentSyllable = syllables[currentPosition];
 
@@ -30,7 +30,14 @@ const App = () => {
 
   return (
     <div className="flex min-h-svh items-center justify-center gap-6">
-      <Card className="dark:bg-red-900">X</Card>
+      <Card
+        className="dark:bg-red-900"
+        onClick={() => {
+          setRejectedSyllables([...rejectedSyllables, currentPosition]);
+        }}
+      >
+        X
+      </Card>
       <Card
         className={
           "font-bold uppercase transition-transform duration-[150ms] " +
@@ -38,8 +45,14 @@ const App = () => {
             ? "dark:bg-green-400 dark:text-slate-900 "
             : "dark:bg-slate-800 ") +
           (isRotated
-            ? "ease-in [transform:rotateY(90deg)]"
-            : "ease-out [transform:rotateY(0)]")
+            ? "ease-in [transform:rotateY(90deg)] "
+            : "ease-out [transform:rotateY(0)] ") +
+          (rejectedSyllables.includes(currentPosition)
+            ? "[transform:translate(-248px)] "
+            : "") +
+          (approvedSyllables.includes(currentPosition)
+            ? "[transform:translate(248px)] "
+            : "")
         }
         onClick={() => {
           setIsRotated(true);
@@ -53,7 +66,14 @@ const App = () => {
       >
         {isRomaji ? currentSyllable.romaji : currentSyllable.kana}
       </Card>
-      <Card className="dark:bg-green-900">〇</Card>
+      <Card
+        className="dark:bg-green-900"
+        onClick={() => {
+          setApprovedSyllables([...approvedSyllables, currentPosition]);
+        }}
+      >
+        〇
+      </Card>
     </div>
   );
 };
