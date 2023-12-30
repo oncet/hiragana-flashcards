@@ -4,11 +4,6 @@ import "./App.css";
 import { Card } from "./components/Card";
 import syllables from "./syllables";
 
-const rotation = {
-  initial: "[transform:rotateY(0)]",
-  middle: "[transform:rotateY(90deg)]",
-};
-
 const App = () => {
   const [theme, setTheme] = useState<"light" | "dark">("dark");
   const [currentPosition, setCurrentPosition] = useState(0);
