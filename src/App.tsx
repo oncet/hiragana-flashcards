@@ -31,12 +31,35 @@ const App = () => {
   return (
     <div className="flex min-h-svh items-center justify-center gap-6">
       <Card
-        className="dark:bg-red-900"
+        className="border-4 border-dashed dark:border-red-500 dark:bg-slate-900 dark:text-slate-400"
         onClick={() => {
           setRejectedSyllables([...rejectedSyllables, currentPosition]);
         }}
       >
-        X
+        <svg
+          viewBox="0 0 100 100"
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-[100px] w-[100px] text-red-500"
+        >
+          <line
+            x1="10"
+            y1="10"
+            x2="90"
+            y2="90"
+            stroke="currentColor"
+            strokeWidth="8"
+            stroke-linecap="round"
+          />
+          <line
+            x1="10"
+            y1="90"
+            x2="90"
+            y2="10"
+            stroke="currentColor"
+            strokeWidth="8"
+            stroke-linecap="round"
+          />
+        </svg>
       </Card>
       <Card
         className={
@@ -67,12 +90,26 @@ const App = () => {
         {isRomaji ? currentSyllable.romaji : currentSyllable.kana}
       </Card>
       <Card
-        className="dark:bg-green-900"
+        className="border-4 border-dashed dark:border-green-500 dark:bg-slate-900 dark:text-slate-400"
         onClick={() => {
           setApprovedSyllables([...approvedSyllables, currentPosition]);
         }}
       >
-        〇
+        {/* 〇 */}
+        <svg
+          viewBox="0 0 100 100"
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-[100px] w-[100px] text-green-500"
+        >
+          <circle
+            cx="50"
+            cy="50"
+            r="40"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="8"
+          />
+        </svg>
       </Card>
     </div>
   );
