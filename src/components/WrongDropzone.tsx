@@ -27,7 +27,7 @@ const WrongDropzone = ({ className, onClick }: WrongDropzoneProps) => {
           y2="90"
           stroke="currentColor"
           strokeWidth="8"
-          stroke-linecap="round"
+          strokeLinecap="round"
         />
         <line
           x1="10"
@@ -36,7 +36,7 @@ const WrongDropzone = ({ className, onClick }: WrongDropzoneProps) => {
           y2="10"
           stroke="currentColor"
           strokeWidth="8"
-          stroke-linecap="round"
+          strokeLinecap="round"
         />
       </svg>
     </Card>
