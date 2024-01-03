@@ -33,6 +33,7 @@ const App = () => {
   return (
     <div className="flex min-h-svh items-center justify-center gap-6">
       <WrongDropzone
+        className="hidden md:flex"
         onClick={() => {
           setRejectedSyllables([...rejectedSyllables, currentPosition]);
         }}
@@ -66,6 +67,7 @@ const App = () => {
         {isRomaji ? currentSyllable.romaji : currentSyllable.kana}
       </Card>
       <RightDropzone
+        className="hidden md:flex"
         onClick={() => {
           setApprovedSyllables([...approvedSyllables, currentPosition]);
         }}

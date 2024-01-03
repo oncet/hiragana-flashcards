@@ -1,13 +1,18 @@
+import { twMerge } from "tailwind-merge";
 import { Card } from "./Card";
 
 type RightDropzoneProps = {
+  className?: string;
   onClick: () => void;
 };
 
-const RightDropzone = ({ onClick }: RightDropzoneProps) => {
+const RightDropzone = ({ className, onClick }: RightDropzoneProps) => {
   return (
     <Card
-      className="border-4 border-dashed dark:border-green-500 dark:bg-slate-900 dark:text-slate-400"
+      className={twMerge(
+        "border-4 border-dashed dark:border-green-500 dark:bg-slate-900 dark:text-slate-400",
+        className,
+      )}
       onClick={onClick}
     >
       <svg
