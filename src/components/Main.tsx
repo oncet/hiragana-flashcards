@@ -18,6 +18,7 @@ const Main = () => {
         onClick={() => {
           setRejectedSyllables([...rejectedSyllables, currentPosition]);
         }}
+        rejectedSyllables={rejectedSyllables}
       />
       <Flashcard
         currentSyllable={currentSyllable}
