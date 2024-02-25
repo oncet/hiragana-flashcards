@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Card } from "./Card";
 
 type FlashcardProps = {
@@ -12,6 +12,14 @@ type FlashcardProps = {
 const Flashcard = ({ currentSyllable, isRejected }: FlashcardProps) => {
   const [isRomaji, setIsRomaji] = useState(false);
   const [isRotated, setIsRotated] = useState(false);
+  const [selected, setSelected] =
+    useState<FlashcardProps["currentSyllable"]>(currentSyllable);
+
+  useEffect(() => {
+    if (isRomaji) {
+      setIsRotated(true);
+    }
+  }, [currentSyllable]);
 
   return (
     <Card
@@ -31,10 +39,11 @@ const Flashcard = ({ currentSyllable, isRejected }: FlashcardProps) => {
         if (isRotated) {
           setIsRomaji(!isRomaji);
           setIsRotated(false);
+          setSelected(currentSyllable);
         }
       }}
     >
-      {isRomaji ? currentSyllable.romaji : currentSyllable.kana}
+      {isRomaji ? selected.romaji : selected.kana}
     </Card>
   );
 };

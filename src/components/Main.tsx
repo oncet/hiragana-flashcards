@@ -17,6 +17,7 @@ const Main = () => {
         className="hidden md:flex"
         onClick={() => {
           setRejectedSyllables([...rejectedSyllables, currentPosition]);
+          setCurrentPosition(currentPosition + 1);
         }}
         rejectedSyllables={rejectedSyllables}
       />
@@ -28,7 +29,9 @@ const Main = () => {
         className="hidden md:flex"
         onClick={() => {
           setApprovedSyllables([...approvedSyllables, currentPosition]);
+          setCurrentPosition(currentPosition + 1);
         }}
+        acceptedSyllables={approvedSyllables}
       />
     </div>
   );
