@@ -7,9 +7,10 @@ type FlashcardProps = {
     romaji: string;
   };
   isRejected: boolean;
+  onFlip: (isRomaji: boolean) => void;
 };
 
-const Flashcard = ({ currentSyllable, isRejected }: FlashcardProps) => {
+const Flashcard = ({ currentSyllable, isRejected, onFlip }: FlashcardProps) => {
   const [isRomaji, setIsRomaji] = useState(false);
   const [isRotated, setIsRotated] = useState(false);
   const [selected, setSelected] =
@@ -33,14 +34,20 @@ const Flashcard = ({ currentSyllable, isRejected }: FlashcardProps) => {
           : "ease-out [transform:rotateY(0)] ")
       }
       onClick={() => {
-        setIsRotated(true);
+        if (!isRomaji) {
+          setIsRotated(true);
+        }
       }}
       onTransitionEnd={() => {
         if (isRotated) {
           setIsRomaji(!isRomaji);
           setIsRotated(false);
           setSelected(currentSyllable);
+
+          return;
         }
+
+        onFlip(isRomaji);
       }}
     >
       {isRomaji ? selected.romaji : selected.kana}

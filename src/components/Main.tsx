@@ -4,7 +4,7 @@ import { Flashcard } from "./Flashcard";
 import { RightDropzone } from "./RightDropzone";
 import { WrongDropzone } from "./WrongDropzone";
 
-function shuffle(array) {
+function shuffle(array: any[]) {
   let currentIndex = array.length,
     randomIndex;
 
@@ -30,14 +30,21 @@ const Main = () => {
   const [currentPosition, setCurrentPosition] = useState(0);
   const [rejectedSyllables, setRejectedSyllables] = useState<number[]>([]);
   const [approvedSyllables, setApprovedSyllables] = useState<number[]>([]);
+  const [isWaiting, setIsWaiting] = useState(false);
 
-  const currentSyllable = syllables[currentPosition];
+  const isLast = currentPosition >= syllables.length;
+
+  const currentSyllable = isLast
+    ? syllables[syllables.length - 1]
+    : syllables[currentPosition];
 
   return (
     <div className="flex min-h-svh items-center justify-center gap-6">
       <WrongDropzone
         className="hidden md:flex"
         onClick={() => {
+          if (!isWaiting || isLast) return;
+
           setRejectedSyllables([...rejectedSyllables, currentPosition]);
           setCurrentPosition(currentPosition + 1);
         }}
@@ -46,10 +53,21 @@ const Main = () => {
       <Flashcard
         currentSyllable={currentSyllable}
         isRejected={rejectedSyllables.includes(currentPosition)}
+        onFlip={(isRomaji) => {
+          if (isRomaji) {
+            setIsWaiting(true);
+
+            return;
+          }
+
+          setIsWaiting(false);
+        }}
       />
       <RightDropzone
         className="hidden md:flex"
         onClick={() => {
+          if (!isWaiting || isLast) return;
+
           setApprovedSyllables([...approvedSyllables, currentPosition]);
           setCurrentPosition(currentPosition + 1);
         }}
