@@ -62,6 +62,7 @@ const Main = () => {
 
           setIsWaiting(false);
         }}
+        isLast={isLast}
       />
       <RightDropzone
         className="hidden md:flex"
