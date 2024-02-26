@@ -26,6 +26,8 @@ const Flashcard = ({
     if (isRomaji || isLast) {
       setIsRotated(true);
     }
+
+    onFlip(false);
   }, [currentSyllable, isLast]);
 
   return (
@@ -42,6 +44,7 @@ const Flashcard = ({
       onClick={() => {
         if (!isRomaji && !isLast) {
           setIsRotated(true);
+          onFlip(true);
         }
       }}
       onTransitionEnd={() => {
@@ -52,8 +55,6 @@ const Flashcard = ({
 
           return;
         }
-
-        onFlip(isRomaji);
       }}
     >
       {isRomaji ? selected.romaji : isLast ? "🎉" : selected.kana}
