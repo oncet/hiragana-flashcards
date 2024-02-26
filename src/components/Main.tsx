@@ -24,7 +24,7 @@ function shuffle(array: any[]) {
   return array;
 }
 
-const shuffledSyllables = shuffle(syllables);
+shuffle(syllables);
 
 const Main = () => {
   const [currentPosition, setCurrentPosition] = useState(0);
