@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { Card } from "./Card";
+import Cross from "./Cross";
 
 type WrongDropzoneProps = {
   className?: string;
@@ -38,30 +39,7 @@ const WrongDropzone = ({
       onClick={onClick}
     >
       <div className="flex basis-[66%] items-end">
-        <svg
-          viewBox="0 0 100 100"
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-[100px] w-[100px] text-red-500"
-        >
-          <line
-            x1="10"
-            y1="10"
-            x2="90"
-            y2="90"
-            stroke="currentColor"
-            strokeWidth="8"
-            strokeLinecap="round"
-          />
-          <line
-            x1="10"
-            y1="90"
-            x2="90"
-            y2="10"
-            stroke="currentColor"
-            strokeWidth="8"
-            strokeLinecap="round"
-          />
-        </svg>
+        <Cross />
       </div>
       <div
         className={`flex basis-[33%] items-center text-5xl font-thin transition [font-variant-numeric:tabular-nums] dark:text-red-400 ${

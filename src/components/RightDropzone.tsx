@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { Card } from "./Card";
+import Circle from "./Circle";
 
 type RightDropzoneProps = {
   className?: string;
@@ -32,26 +33,13 @@ const RightDropzone = ({
   return (
     <Card
       className={twMerge(
-        "flex flex-col border-4 border-dashed dark:border-green-500 dark:bg-slate-900 dark:text-slate-400",
+        "flex basis-[33%] flex-col border-4 border-dashed dark:border-green-500 dark:bg-slate-900 dark:text-slate-400",
         className,
       )}
       onClick={onClick}
     >
       <div className="flex basis-[66%] items-end">
-        <svg
-          viewBox="0 0 100 100"
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-[100px] w-[100px] text-green-500"
-        >
-          <circle
-            cx="50"
-            cy="50"
-            r="40"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="8"
-          />
-        </svg>
+        <Circle />
       </div>
       <div
         className={`flex basis-[33%] items-center text-5xl font-thin transition dark:text-green-400 ${
