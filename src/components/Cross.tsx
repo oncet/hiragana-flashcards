@@ -1,9 +1,18 @@
-const Cross = () => {
+const sizes = {
+  sm: "h-[50px] w-[50px]",
+  md: "h-[100px] w-[100px]",
+};
+
+type CrossProps = {
+  size?: "sm" | "md";
+};
+
+const Cross = ({ size = "md" }: CrossProps) => {
   return (
     <svg
       viewBox="0 0 100 100"
       xmlns="http://www.w3.org/2000/svg"
-      className="h-[100px] w-[100px] text-red-500"
+      className={`${sizes[size]} text-red-500`}
     >
       <line
         x1="10"
