@@ -1,5 +1,7 @@
 import { useState } from "react";
 import syllables from "../syllables";
+import Circle from "./Circle";
+import Cross from "./Cross";
 import { Flashcard } from "./Flashcard";
 import { RightDropzone } from "./RightDropzone";
 import { WrongDropzone } from "./WrongDropzone";
@@ -41,56 +43,36 @@ const Main = () => {
   return (
     <div className="flex h-svh flex-col justify-center">
       <div className="mx-auto flex basis-[33%] items-center justify-between md:hidden">
-        <div className="flex flex-col items-center px-8 py-4">
-          <svg
-            viewBox="0 0 100 100"
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-[50px] w-[50px] text-red-500"
-          >
-            <line
-              x1="10"
-              y1="10"
-              x2="90"
-              y2="90"
-              stroke="currentColor"
-              strokeWidth="8"
-              strokeLinecap="round"
-            />
-            <line
-              x1="10"
-              y1="90"
-              x2="90"
-              y2="10"
-              stroke="currentColor"
-              strokeWidth="8"
-              strokeLinecap="round"
-            />
-          </svg>
+        <div
+          className="flex flex-col items-center px-8 py-4"
+          onClick={() => {
+            if (!isWaiting || isLast) return;
+
+            setRejectedSyllables([...rejectedSyllables, currentPosition]);
+            setCurrentPosition(currentPosition + 1);
+          }}
+        >
+          <Cross size="sm" />
           <div
             className={`flex items-center text-5xl font-thin transition [font-variant-numeric:tabular-nums] dark:text-red-400`}
           >
-            0
+            {rejectedSyllables.length}
           </div>
         </div>
-        <div className="flex flex-col items-center px-8 py-4">
-          <svg
-            viewBox="0 0 100 100"
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-[50px] w-[50px] text-green-500"
-          >
-            <circle
-              cx="50"
-              cy="50"
-              r="40"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="8"
-            />
-          </svg>
+        <div
+          className="flex flex-col items-center px-8 py-4"
+          onClick={() => {
+            if (!isWaiting || isLast) return;
+
+            setApprovedSyllables([...approvedSyllables, currentPosition]);
+            setCurrentPosition(currentPosition + 1);
+          }}
+        >
+          <Circle size="sm" />
           <div
             className={`flex items-center text-5xl font-thin transition [font-variant-numeric:tabular-nums] dark:text-green-400`}
           >
-            0
+            {approvedSyllables.length}
           </div>
         </div>
       </div>

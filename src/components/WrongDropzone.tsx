@@ -7,12 +7,14 @@ type WrongDropzoneProps = {
   className?: string;
   onClick: () => void;
   rejectedSyllables: number[];
+  size?: "small" | "large";
 };
 
 const WrongDropzone = ({
   className,
   onClick,
   rejectedSyllables,
+  size = "small",
 }: WrongDropzoneProps) => {
   const [isLarge, setIsLarge] = useState(false);
 
@@ -33,7 +35,7 @@ const WrongDropzone = ({
   return (
     <Card
       className={twMerge(
-        "dark:text-slate-399 flex flex-col border-4 border-dashed dark:border-red-500 dark:bg-slate-900",
+        "flex flex-col border-4 border-dashed dark:border-red-500 dark:bg-slate-900 dark:text-slate-400",
         className,
       )}
       onClick={onClick}
