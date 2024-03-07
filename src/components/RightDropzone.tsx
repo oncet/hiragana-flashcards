@@ -33,7 +33,7 @@ const RightDropzone = ({
   return (
     <Card
       className={twMerge(
-        "flex basis-[33%] flex-col border-4 border-dashed dark:border-green-500 dark:bg-slate-900 dark:text-slate-400",
+        "flex flex-col border-4 border-dashed dark:border-green-500 dark:bg-slate-900 dark:text-slate-400",
         className,
       )}
       onClick={onClick}
