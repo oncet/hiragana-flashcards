@@ -4,6 +4,7 @@ import Circle from "./Circle";
 import Cross from "./Cross";
 import { Flashcard } from "./Flashcard";
 import { RightDropzone } from "./RightDropzone";
+import ShuffleIcon from "./ShuffleIcon";
 import { WrongDropzone } from "./WrongDropzone";
 
 function shuffle(array: any[]) {
@@ -42,37 +43,39 @@ const Main = () => {
 
   return (
     <div className="flex h-svh flex-col justify-center">
-      <div className="mx-auto flex basis-[33%] items-center justify-between md:hidden">
-        <div
-          className="flex flex-col items-center gap-4 px-8 py-4"
-          onClick={() => {
-            if (!isWaiting || isLast) return;
-
-            setRejectedSyllables([...rejectedSyllables, currentPosition]);
-            setCurrentPosition(currentPosition + 1);
-          }}
-        >
-          <Cross size="sm" />
+      <div className="mx-auto flex basis-[33%]">
+        <div className="flex items-center md:hidden">
           <div
-            className={`flex items-center text-4xl font-thin transition [font-variant-numeric:tabular-nums] dark:text-red-400`}
+            className="flex flex-col items-center gap-4 px-8 py-4"
+            onClick={() => {
+              if (!isWaiting || isLast) return;
+
+              setRejectedSyllables([...rejectedSyllables, currentPosition]);
+              setCurrentPosition(currentPosition + 1);
+            }}
           >
-            {rejectedSyllables.length}
+            <Cross size="sm" />
+            <div
+              className={`flex items-center text-4xl font-thin transition [font-variant-numeric:tabular-nums] dark:text-red-400`}
+            >
+              {rejectedSyllables.length}
+            </div>
           </div>
-        </div>
-        <div
-          className="flex flex-col items-center gap-4 px-8 py-4"
-          onClick={() => {
-            if (!isWaiting || isLast) return;
-
-            setApprovedSyllables([...approvedSyllables, currentPosition]);
-            setCurrentPosition(currentPosition + 1);
-          }}
-        >
-          <Circle size="sm" />
           <div
-            className={`flex items-center text-4xl font-thin transition [font-variant-numeric:tabular-nums] dark:text-green-400`}
+            className="flex flex-col items-center gap-4 px-8 py-4"
+            onClick={() => {
+              if (!isWaiting || isLast) return;
+
+              setApprovedSyllables([...approvedSyllables, currentPosition]);
+              setCurrentPosition(currentPosition + 1);
+            }}
           >
-            {approvedSyllables.length}
+            <Circle size="sm" />
+            <div
+              className={`flex items-center text-4xl font-thin transition [font-variant-numeric:tabular-nums] dark:text-green-400`}
+            >
+              {approvedSyllables.length}
+            </div>
           </div>
         </div>
       </div>
@@ -112,7 +115,11 @@ const Main = () => {
           acceptedSyllables={approvedSyllables}
         />
       </div>
-      <div className="basis-[33%] md:hidden" />
+      <div className="flex basis-[33%] items-center justify-center">
+        <button type="button" className="rounded-full bg-slate-700 p-8">
+          <ShuffleIcon />
+        </button>
+      </div>
     </div>
   );
 };
