@@ -44,7 +44,7 @@ const Main = () => {
     <div className="flex h-svh flex-col justify-center">
       <div className="mx-auto flex basis-[33%] items-center justify-between md:hidden">
         <div
-          className="flex flex-col items-center px-8 py-4"
+          className="flex flex-col items-center gap-4 px-8 py-4"
           onClick={() => {
             if (!isWaiting || isLast) return;
 
@@ -54,13 +54,13 @@ const Main = () => {
         >
           <Cross size="sm" />
           <div
-            className={`flex items-center text-5xl font-thin transition [font-variant-numeric:tabular-nums] dark:text-red-400`}
+            className={`flex items-center text-4xl font-thin transition [font-variant-numeric:tabular-nums] dark:text-red-400`}
           >
             {rejectedSyllables.length}
           </div>
         </div>
         <div
-          className="flex flex-col items-center px-8 py-4"
+          className="flex flex-col items-center gap-4 px-8 py-4"
           onClick={() => {
             if (!isWaiting || isLast) return;
 
@@ -70,7 +70,7 @@ const Main = () => {
         >
           <Circle size="sm" />
           <div
-            className={`flex items-center text-5xl font-thin transition [font-variant-numeric:tabular-nums] dark:text-green-400`}
+            className={`flex items-center text-4xl font-thin transition [font-variant-numeric:tabular-nums] dark:text-green-400`}
           >
             {approvedSyllables.length}
           </div>
