@@ -3,6 +3,11 @@ const sizes = {
   md: "h-[100px] w-[100px]",
 };
 
+const strokes = {
+  sm: 10,
+  md: 8,
+};
+
 type CrossProps = {
   size?: "sm" | "md";
 };
@@ -20,7 +25,7 @@ const Cross = ({ size = "md" }: CrossProps) => {
         x2="90"
         y2="90"
         stroke="currentColor"
-        strokeWidth="8"
+        strokeWidth={strokes[size]}
         strokeLinecap="round"
       />
       <line
@@ -29,7 +34,7 @@ const Cross = ({ size = "md" }: CrossProps) => {
         x2="90"
         y2="10"
         stroke="currentColor"
-        strokeWidth="8"
+        strokeWidth={strokes[size]}
         strokeLinecap="round"
       />
     </svg>

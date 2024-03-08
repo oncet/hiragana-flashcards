@@ -3,6 +3,11 @@ const sizes = {
   md: "h-[100px] w-[100px]",
 };
 
+const strokes = {
+  sm: 10,
+  md: 8,
+};
+
 type CircleProps = {
   size?: "sm" | "md";
 };
@@ -20,7 +25,7 @@ const Circle = ({ size = "md" }: CircleProps) => {
         r="40"
         fill="none"
         stroke="currentColor"
-        strokeWidth="8"
+        strokeWidth={strokes[size]}
       />
     </svg>
   );

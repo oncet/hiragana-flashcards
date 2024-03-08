@@ -56,7 +56,7 @@ const Main = () => {
           >
             <Cross size="sm" />
             <div
-              className={`flex items-center text-4xl font-thin transition [font-variant-numeric:tabular-nums] dark:text-red-400`}
+              className={`flex items-center text-4xl transition [font-variant-numeric:tabular-nums] dark:text-red-400`}
             >
               {rejectedSyllables.length}
             </div>
@@ -72,7 +72,7 @@ const Main = () => {
           >
             <Circle size="sm" />
             <div
-              className={`flex items-center text-4xl font-thin transition [font-variant-numeric:tabular-nums] dark:text-green-400`}
+              className={`flex items-center text-4xl transition [font-variant-numeric:tabular-nums] dark:text-green-400`}
             >
               {approvedSyllables.length}
             </div>
