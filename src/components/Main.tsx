@@ -3,6 +3,7 @@ import syllables from "../syllables";
 import Circle from "./Circle";
 import Cross from "./Cross";
 import { Flashcard } from "./Flashcard";
+import MobileButton from "./MobileButton";
 import { RightDropzone } from "./RightDropzone";
 import ShuffleIcon from "./ShuffleIcon";
 import { WrongDropzone } from "./WrongDropzone";
@@ -43,41 +44,12 @@ const Main = () => {
 
   return (
     <div className="flex h-svh flex-col justify-center">
-      <div className="mx-auto flex basis-[33%]">
-        <div className="flex items-center md:hidden">
-          <div
-            className="flex flex-col items-center gap-4 px-8 py-4"
-            onClick={() => {
-              if (!isWaiting || isLast) return;
-
-              setRejectedSyllables([...rejectedSyllables, currentPosition]);
-              setCurrentPosition(currentPosition + 1);
-            }}
-          >
-            <Cross size="sm" />
-            <div
-              className={`flex items-center text-4xl transition [font-variant-numeric:tabular-nums] dark:text-red-400`}
-            >
-              {rejectedSyllables.length}
-            </div>
-          </div>
-          <div
-            className="flex flex-col items-center gap-4 px-8 py-4"
-            onClick={() => {
-              if (!isWaiting || isLast) return;
-
-              setApprovedSyllables([...approvedSyllables, currentPosition]);
-              setCurrentPosition(currentPosition + 1);
-            }}
-          >
-            <Circle size="sm" />
-            <div
-              className={`flex items-center text-4xl transition [font-variant-numeric:tabular-nums] dark:text-green-400`}
-            >
-              {approvedSyllables.length}
-            </div>
-          </div>
-        </div>
+      <div className="flex basis-[33%] items-center justify-center">
+        {isLast && (
+          <button type="button" className="rounded-full bg-slate-700 p-8">
+            <ShuffleIcon />
+          </button>
+        )}
       </div>
       <div className="flex items-start justify-center gap-6 md:items-center">
         <WrongDropzone
@@ -115,10 +87,31 @@ const Main = () => {
           acceptedSyllables={approvedSyllables}
         />
       </div>
-      <div className="flex basis-[33%] items-center justify-center">
-        <button type="button" className="rounded-full bg-slate-700 p-8">
-          <ShuffleIcon />
-        </button>
+      <div className="flex w-full basis-[33%] px-12">
+        <div className="flex w-full items-center justify-between md:hidden">
+          <MobileButton
+            color="error"
+            count={rejectedSyllables.length}
+            image={<Cross size="sm" />}
+            onClick={() => {
+              if (!isWaiting || isLast) return;
+
+              setRejectedSyllables([...rejectedSyllables, currentPosition]);
+              setCurrentPosition(currentPosition + 1);
+            }}
+          />
+          <MobileButton
+            color="success"
+            count={approvedSyllables.length}
+            image={<Circle size="sm" />}
+            onClick={() => {
+              if (!isWaiting || isLast) return;
+
+              setApprovedSyllables([...approvedSyllables, currentPosition]);
+              setCurrentPosition(currentPosition + 1);
+            }}
+          />
+        </div>
       </div>
     </div>
   );
