@@ -4,9 +4,6 @@ import Circle from "./Circle";
 import Cross from "./Cross";
 import { Flashcard } from "./Flashcard";
 import MobileButton from "./MobileButton";
-import { RightDropzone } from "./RightDropzone";
-import ShuffleIcon from "./ShuffleIcon";
-import { WrongDropzone } from "./WrongDropzone";
 
 function shuffle(array: any[]) {
   let currentIndex = array.length,
@@ -43,75 +40,44 @@ const Main = () => {
     : syllables[currentPosition];
 
   return (
-    <div className="flex h-svh flex-col justify-center">
-      <div className="flex basis-[33%] items-center justify-center">
-        {isLast && (
-          <button type="button" className="rounded-full bg-slate-700 p-8">
-            <ShuffleIcon />
-          </button>
-        )}
-      </div>
-      <div className="flex items-start justify-center gap-6 md:items-center">
-        <WrongDropzone
-          className="hidden md:flex"
+    <div className="mx-auto flex h-svh max-w-screen-sm flex-col items-center justify-between gap-4 p-12">
+      <Flashcard
+        currentSyllable={currentSyllable}
+        isRejected={rejectedSyllables.includes(currentPosition)}
+        onFlip={(isRomaji) => {
+          if (isRomaji) {
+            setIsWaiting(true);
+
+            return;
+          }
+
+          setIsWaiting(false);
+        }}
+        isLast={isLast}
+      />
+      <div className="flex w-full justify-between gap-4">
+        <MobileButton
+          color="error"
+          count={rejectedSyllables.length}
+          image={<Cross size="sm" />}
           onClick={() => {
             if (!isWaiting || isLast) return;
 
             setRejectedSyllables([...rejectedSyllables, currentPosition]);
             setCurrentPosition(currentPosition + 1);
           }}
-          rejectedSyllables={rejectedSyllables}
         />
-        <Flashcard
-          currentSyllable={currentSyllable}
-          isRejected={rejectedSyllables.includes(currentPosition)}
-          onFlip={(isRomaji) => {
-            if (isRomaji) {
-              setIsWaiting(true);
-
-              return;
-            }
-
-            setIsWaiting(false);
-          }}
-          isLast={isLast}
-        />
-        <RightDropzone
-          className="hidden md:flex"
+        <MobileButton
+          color="success"
+          count={approvedSyllables.length}
+          image={<Circle size="sm" />}
           onClick={() => {
             if (!isWaiting || isLast) return;
 
             setApprovedSyllables([...approvedSyllables, currentPosition]);
             setCurrentPosition(currentPosition + 1);
           }}
-          acceptedSyllables={approvedSyllables}
         />
-      </div>
-      <div className="flex w-full basis-[33%] px-12">
-        <div className="flex w-full items-center justify-between md:hidden">
-          <MobileButton
-            color="error"
-            count={rejectedSyllables.length}
-            image={<Cross size="sm" />}
-            onClick={() => {
-              if (!isWaiting || isLast) return;
-
-              setRejectedSyllables([...rejectedSyllables, currentPosition]);
-              setCurrentPosition(currentPosition + 1);
-            }}
-          />
-          <MobileButton
-            color="success"
-            count={approvedSyllables.length}
-            image={<Circle size="sm" />}
-            onClick={() => {
-              if (!isWaiting || isLast) return;
-
-              setApprovedSyllables([...approvedSyllables, currentPosition]);
-              setCurrentPosition(currentPosition + 1);
-            }}
-          />
-        </div>
       </div>
     </div>
   );
