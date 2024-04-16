@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 import "./App.css";
 import Circle from "./components/Circle";
@@ -6,6 +7,8 @@ import Cross from "./components/Cross";
 
 const App = () => {
   const [theme, setTheme] = useState<"light" | "dark">("dark");
+  const [isFlipped, setIsFlipper] = useState(false);
+  const [isReverseVisible, setIsReverseVisible] = useState(false);
 
   useEffect(() => {
     const htmlElement = document.querySelector("html");
@@ -24,13 +27,29 @@ const App = () => {
     }
   }, []);
 
+  console.log(isFlipped);
+
   return (
     <div className="flex h-svh flex-col items-center justify-center gap-16">
-      <div className="h-[8.9cm] w-[6.4cm] rounded-[3.55mm] bg-slate-900 p-[5mm]">
+      <motion.button
+        animate={{ rotateY: isFlipped ? 180 : 0 }}
+        transition={{ duration: 0.5 }}
+        onUpdate={(latest) => {
+          if (latest.rotateY > "90") {
+            setIsReverseVisible(true);
+          } else {
+            setIsReverseVisible(false);
+          }
+        }}
+        onClick={() => {
+          setIsFlipper(!isFlipped);
+        }}
+        className="h-[8.9cm] w-[6.4cm] rounded-[3.55mm] bg-slate-900 p-[5mm]"
+      >
         <div className="flex h-full items-center justify-center rounded-[3.6mm] bg-slate-800 text-9xl font-bold text-slate-300">
-          あ
+          {isReverseVisible ? "A1" : "あ"}
         </div>
-      </div>
+      </motion.button>
       <div className="flex w-full justify-center gap-16">
         <button className="flex h-[110px] w-[110px] items-center justify-center rounded-full border-2 border-red-900">
           <Cross size="sm" />
