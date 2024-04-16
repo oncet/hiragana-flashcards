@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 import "./App.css";
-import { Main } from "./components/Main";
 import Circle from "./components/Circle";
 import Cross from "./components/Cross";
 
@@ -26,18 +25,18 @@ const App = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center h-svh justify-center gap-16">
-      <div className="bg-slate-900 w-[6.4cm] h-[8.9cm] rounded-[3.55mm] p-[5mm]">
-        <div className="rounded-[3.6mm] h-full flex items-center justify-center text-9xl bg-slate-800 font-bold text-slate-300">
+    <div className="flex h-svh flex-col items-center justify-center gap-16">
+      <div className="h-[8.9cm] w-[6.4cm] rounded-[3.55mm] bg-slate-900 p-[5mm]">
+        <div className="flex h-full items-center justify-center rounded-[3.6mm] bg-slate-800 text-9xl font-bold text-slate-300">
           あ
         </div>
       </div>
-      <div className="w-full flex justify-center gap-16">
-        <button className="border-2 border-red-900 rounded-full w-[110px] h-[110px] flex justify-center items-center">
-          <Cross size="sm" /> 
+      <div className="flex w-full justify-center gap-16">
+        <button className="flex h-[110px] w-[110px] items-center justify-center rounded-full border-2 border-red-900">
+          <Cross size="sm" />
         </button>
-        <button className="border-2 border-green-900 rounded-full w-[110px] h-[110px] flex justify-center items-center">
-          <Circle size="sm" /> 
+        <button className="flex h-[110px] w-[110px] items-center justify-center rounded-full border-2 border-green-900">
+          <Circle size="sm" />
         </button>
       </div>
     </div>

@@ -1,5 +1,5 @@
 const sizes = {
-  sm: "h-[50px] w-[50px]",
+  sm: "h-[35px] w-[35px]",
   md: "h-[100px] w-[100px]",
 };
 
