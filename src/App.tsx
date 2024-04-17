@@ -27,8 +27,6 @@ const App = () => {
     }
   }, []);
 
-  console.log(isFlipped);
-
   return (
     <div className="flex h-svh flex-col items-center justify-center gap-16">
       <motion.button
@@ -47,7 +45,11 @@ const App = () => {
         className="h-[8.9cm] w-[6.4cm] rounded-[3.55mm] bg-slate-900 p-[5mm]"
       >
         <div className="flex h-full items-center justify-center rounded-[3.6mm] bg-slate-800 text-9xl font-bold text-slate-300">
-          {isReverseVisible ? "A1" : "あ"}
+          {isReverseVisible ? (
+            <div className="[transform:rotateY(180deg)]">A1</div>
+          ) : (
+            "あ"
+          )}
         </div>
       </motion.button>
       <div className="flex w-full justify-center gap-16">
