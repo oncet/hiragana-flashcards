@@ -4,9 +4,10 @@ import { motion } from "framer-motion";
 import "./App.css";
 import Circle from "./components/Circle";
 import Cross from "./components/Cross";
+import AcceptButton from "./components/AcceptButton";
 
 const App = () => {
-  const [theme, setTheme] = useState<"light" | "dark">("dark");
+  const [theme] = useState<"light" | "dark">("dark");
   const [isFlipped, setIsFlipper] = useState(false);
   const [isReverseVisible, setIsReverseVisible] = useState(false);
 
@@ -46,7 +47,7 @@ const App = () => {
       >
         <div className="flex h-full items-center justify-center rounded-[3.6mm] bg-slate-800 text-9xl font-bold text-slate-300">
           {isReverseVisible ? (
-            <div className="[transform:rotateY(180deg)]">A1</div>
+            <div className="[transform:rotateY(180deg)]">A</div>
           ) : (
             "あ"
           )}
@@ -56,9 +57,10 @@ const App = () => {
         <button className="flex h-[110px] w-[110px] items-center justify-center rounded-full border-2 border-red-900">
           <Cross size="sm" />
         </button>
-        <button className="flex h-[110px] w-[110px] items-center justify-center rounded-full border-2 border-green-900">
+        {/* <button className="flex h-[110px] w-[110px] items-center justify-center rounded-full border-2 border-green-900">
           <Circle size="sm" />
-        </button>
+        </button> */}
+        <AcceptButton />
       </div>
     </div>
   );
