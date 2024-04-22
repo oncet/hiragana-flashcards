@@ -4,14 +4,13 @@ import { motion } from "framer-motion";
 import Circle from "./Circle";
 
 const AcceptButton = () => {
-  const [count, setCount] = useState(4);
+  const [count, setCount] = useState(0);
   const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
     if (animate) {
       window.setTimeout(() => {
         setAnimate(false);
-        console.log("timeout finished");
       }, 200);
     }
   }, [animate]);
