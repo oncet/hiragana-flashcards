@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 import "./App.css";
-import Circle from "./components/Circle";
-import Cross from "./components/Cross";
 import AcceptButton from "./components/AcceptButton";
+import Cross from "./components/Cross";
 
 const App = () => {
   const [theme] = useState<"light" | "dark">("dark");
-  const [isFlipped, setIsFlipper] = useState(false);
+
+  const [isFlipped, setIsFlipped] = useState(false);
   const [isReverseVisible, setIsReverseVisible] = useState(false);
 
   useEffect(() => {
@@ -41,11 +41,17 @@ const App = () => {
           }
         }}
         onClick={() => {
-          setIsFlipper(!isFlipped);
+          setIsFlipped(!isFlipped);
         }}
-        className="h-[8.9cm] w-[6.4cm] rounded-[3.55mm] bg-slate-900 p-[5mm]"
+        className={`h-[8.9cm] w-[6.4cm] rounded-[3.55mm] ${
+          isReverseVisible ? "bg-slate-900" : "bg-slate-800"
+        } p-[5mm]`}
       >
-        <div className="flex h-full items-center justify-center rounded-[3.6mm] bg-slate-800 text-9xl font-bold text-slate-300">
+        <div
+          className={`flex h-full items-center justify-center rounded-[3.6mm] ${
+            isReverseVisible ? "" : "border border-solid border-slate-700"
+          } bg-slate-800 text-9xl font-bold text-slate-300`}
+        >
           {isReverseVisible ? (
             <div className="[transform:rotateY(180deg)]">A</div>
           ) : (
