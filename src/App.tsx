@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import "./App.css";
 import AcceptButton from "./components/AcceptButton";
-import Cross from "./components/Cross";
+import RejectButton from "./components/RejectButton";
 
 const App = () => {
   const [theme] = useState<"light" | "dark">("dark");
@@ -63,12 +63,7 @@ const App = () => {
         </div>
       </motion.button>
       <div className="flex w-full justify-center gap-16">
-        <button className="flex h-[110px] w-[110px] items-center justify-center rounded-full border-2 border-red-900">
-          <Cross size="sm" />
-        </button>
-        {/* <button className="flex h-[110px] w-[110px] items-center justify-center rounded-full border-2 border-green-900">
-          <Circle size="sm" />
-        </button> */}
+        <RejectButton />
         <AcceptButton />
       </div>
     </div>
