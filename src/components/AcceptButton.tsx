@@ -1,18 +1,22 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
 
 import Circle from "./Circle";
 
-const AcceptButton = () => {
-  const [count, setCount] = useState(0);
+type AcceptButtonProps = {
+  className?: string;
+  count: number;
+  onClick: () => void;
+};
 
+const AcceptButton = ({ className, count, onClick }: AcceptButtonProps) => {
   return (
     <div className="relative">
       <button
-        className="flex h-[110px] w-[110px] items-center justify-center rounded-full border-2 border-green-900"
-        onClick={() => {
-          setCount(count + 1);
-        }}
+        className={
+          "flex h-[110px] w-[110px] items-center justify-center rounded-full border-2 border-green-900 transition-opacity duration-300 " +
+          className
+        }
+        onClick={onClick}
       >
         <Circle size="sm" />
       </button>

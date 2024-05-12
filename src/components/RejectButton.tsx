@@ -1,18 +1,22 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
 
 import Cross from "./Cross";
 
-const RejectButton = () => {
-  const [count, setCount] = useState(0);
+type RejectButtonProps = {
+  className?: string;
+  count: number;
+  onClick: () => void;
+};
 
+const RejectButton = ({ className, count, onClick }: RejectButtonProps) => {
   return (
     <div className="relative">
       <button
-        className="flex h-[110px] w-[110px] items-center justify-center rounded-full border-2 border-red-900"
-        onClick={() => {
-          setCount(count + 1);
-        }}
+        className={
+          "flex h-[110px] w-[110px] items-center justify-center rounded-full border-2 border-red-900 transition-opacity duration-300 " +
+          className
+        }
+        onClick={onClick}
       >
         <Cross size="sm" />
       </button>
