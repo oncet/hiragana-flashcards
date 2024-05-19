@@ -1,11 +1,18 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import "./App.css";
 
 import AcceptButton from "./components/AcceptButton";
 import RejectButton from "./components/RejectButton";
 import syllables from "./syllables";
+
+function useFirstRender() {
+  const ref = useRef(true);
+  const firstRender = ref.current;
+  ref.current = false;
+  return firstRender;
+}
 
 const randomSyllables = syllables.sort(() => Math.random() - 0.5);
 
@@ -19,6 +26,8 @@ const App = () => {
   const [rejectedCount, setRejectedCount] = useState(0);
   const [acceptedCount, setAcceptedCount] = useState(0);
   const [isEndgame, setIsEndgame] = useState(false);
+
+  const isFirstRender = useFirstRender();
 
   useEffect(() => {
     const htmlElement = document.querySelector("html");
@@ -38,20 +47,25 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    if (!isReverseVisible) {
-      setCurrentSyllable(
-        syllableIndex < syllables.length - 1
-          ? syllables[syllableIndex + 1]
-          : syllables[0],
-      );
+    if (!isReverseVisible && !isFirstRender) {
+      const nextSyllableIndex =
+        syllableIndex < syllables.length - 1 ? syllableIndex + 1 : 0;
 
-      if (syllableIndex === syllables.length - 1) {
-        // setIsEndgame(true);
+      setCurrentSyllable(syllables[nextSyllableIndex]);
+      setSyllableIndex(nextSyllableIndex);
+
+      if (isEndgame) {
+        setIsEndgame(false);
       }
 
-      setSyllableIndex(
-        syllableIndex < syllables.length - 1 ? syllableIndex + 1 : 0,
-      );
+      if (syllableIndex === syllables.length - 1) {
+        setIsEndgame(true);
+      }
+    } else {
+      if (isEndgame) {
+        setRejectedCount(0);
+        setAcceptedCount(0);
+      }
     }
   }, [isReverseVisible]);
 
