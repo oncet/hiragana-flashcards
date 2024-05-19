@@ -18,6 +18,7 @@ const App = () => {
   const [isReverseVisible, setIsReverseVisible] = useState(false);
   const [rejectedCount, setRejectedCount] = useState(0);
   const [acceptedCount, setAcceptedCount] = useState(0);
+  const [isEndgame, setIsEndgame] = useState(false);
 
   useEffect(() => {
     const htmlElement = document.querySelector("html");
@@ -43,6 +44,10 @@ const App = () => {
           ? syllables[syllableIndex + 1]
           : syllables[0],
       );
+
+      if (syllableIndex === syllables.length - 1) {
+        // setIsEndgame(true);
+      }
 
       setSyllableIndex(
         syllableIndex < syllables.length - 1 ? syllableIndex + 1 : 0,
@@ -72,7 +77,7 @@ const App = () => {
         } p-[5mm]`}
       >
         <div
-          className={`flex h-full items-center justify-center rounded-[3.6mm] bg-slate-900 text-9xl font-bold uppercase text-slate-300`}
+          className={`relative flex h-full items-center justify-center rounded-[3.6mm] bg-slate-900 text-9xl font-bold uppercase text-slate-300`}
           style={{
             backgroundImage: isReverseVisible
               ? ""
@@ -83,6 +88,13 @@ const App = () => {
             <div className="[transform:rotateY(180deg)]">
               {currentSyllable.romaji}
             </div>
+          ) : isEndgame ? (
+            <>
+              <div className="">🎉</div>
+              <div className="absolute bottom-0 px-6 py-4 text-base font-light lowercase tracking-wider text-slate-400/75">
+                touch to Restart
+              </div>
+            </>
           ) : (
             currentSyllable.kana
           )}
