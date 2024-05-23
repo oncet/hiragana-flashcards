@@ -104,9 +104,9 @@ const App = () => {
             </div>
           ) : isEndgame ? (
             <>
-              <div className="">🎉</div>
+              <div>🎉</div>
               <div className="absolute bottom-0 px-6 py-4 text-base font-light lowercase tracking-wider text-slate-400/75">
-                touch to Restart
+                Tap to restart
               </div>
             </>
           ) : (
