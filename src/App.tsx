@@ -25,7 +25,7 @@ const App = () => {
   const [isReverseVisible, setIsReverseVisible] = useState(false);
   const [rejectedCount, setRejectedCount] = useState(0);
   const [acceptedCount, setAcceptedCount] = useState(0);
-  const [isEndgame, setIsEndgame] = useState(true);
+  const [isEndgame, setIsEndgame] = useState(false);
 
   const isFirstRender = useFirstRender();
 
